@@ -7,7 +7,7 @@ const { getCurrentRandomName, getCurrentRandomDisplayName, generateRandomWindowT
  * This should be called early in the application startup
  */
 function initializeRandomProcessNames() {
-    console.log('Initializing random process names for stealth...');
+    console.log('Initializing random process names for focus-mode...');
 
     const randomName = getCurrentRandomName();
     const randomDisplayName = getCurrentRandomDisplayName();

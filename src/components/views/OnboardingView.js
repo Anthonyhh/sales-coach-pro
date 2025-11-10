@@ -438,9 +438,9 @@ export class OnboardingView extends LitElement {
         const slides = [
             {
                 icon: 'assets/onboarding/welcome.svg',
-                title: 'Welcome to Cheating Daddy',
+                title: 'Welcome to Coaching Daddy',
                 content:
-                    'Your AI assistant that listens and watches, then provides intelligent suggestions automatically during interviews and meetings.',
+                    'Your AI assistant that listens and watches, then provides intelligent suggestions automatically during sales-calls and meetings.',
             },
             {
                 icon: 'assets/onboarding/security.svg',

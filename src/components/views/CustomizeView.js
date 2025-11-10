@@ -419,7 +419,7 @@ export class CustomizeView extends LitElement {
 
     constructor() {
         super();
-        this.selectedProfile = 'interview';
+        this.selectedProfile = 'sales-call';
         this.selectedLanguage = 'en-US';
         this.selectedScreenshotInterval = '5';
         this.selectedImageQuality = 'medium';
@@ -462,9 +462,9 @@ export class CustomizeView extends LitElement {
     getProfiles() {
         return [
             {
-                value: 'interview',
+                value: 'sales-call',
                 name: 'Job Interview',
-                description: 'Get help with answering interview questions',
+                description: 'Get help with answering sales-call questions',
             },
             {
                 value: 'sales',
@@ -487,9 +487,9 @@ export class CustomizeView extends LitElement {
                 description: 'Guidance for business negotiations and deals',
             },
             {
-                value: 'exam',
+                value: 'meeting',
                 name: 'Exam Assistant',
-                description: 'Academic assistance for test-taking and exam questions',
+                description: 'Academic assistance for test-taking and meeting questions',
             },
         ];
     }
@@ -531,12 +531,12 @@ export class CustomizeView extends LitElement {
 
     getProfileNames() {
         return {
-            interview: 'Job Interview',
+            sales-call: 'Job Interview',
             sales: 'Sales Call',
             meeting: 'Business Meeting',
             presentation: 'Presentation',
             negotiation: 'Negotiation',
-            exam: 'Exam Assistant',
+            meeting: 'Exam Assistant',
         };
     }
 
@@ -574,7 +574,7 @@ export class CustomizeView extends LitElement {
     }
 
     getDefaultKeybinds() {
-        const isMac = cheddar.isMacOS || navigator.platform.includes('Mac');
+        const isMac = salesCoach.isMacOS || navigator.platform.includes('Mac');
         return {
             moveUp: isMac ? 'Alt+Up' : 'Ctrl+Up',
             moveDown: isMac ? 'Alt+Down' : 'Ctrl+Down',
@@ -652,7 +652,7 @@ export class CustomizeView extends LitElement {
             {
                 key: 'toggleVisibility',
                 name: 'Toggle Window Visibility',
-                description: 'Show/hide the application window',
+                description: 'Show/minimize the application window',
             },
             {
                 key: 'toggleClickThrough',
@@ -937,10 +937,10 @@ export class CustomizeView extends LitElement {
                     <div class="form-grid">
                         <div class="form-group">
                             <label class="form-label">Profile</label>
-                            <select class="form-control" .value=${localStorage.getItem('stealthProfile') || 'balanced'} @change=${e => {
-                                localStorage.setItem('stealthProfile', e.target.value);
+                            <select class="form-control" .value=${localStorage.getItem('focus-modeProfile') || 'balanced'} @change=${e => {
+                                localStorage.setItem('focus-modeProfile', e.target.value);
                                 // We need to notify the main process to restart for some settings to apply
-                                alert('Restart the application for stealth changes to take full effect.');
+                                alert('Restart the application for focus-mode changes to take full effect.');
                             }}>
                                 <option value="visible">Visible</option>
                                 <option value="balanced">Balanced</option>

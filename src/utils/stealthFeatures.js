@@ -1,13 +1,13 @@
-// stealthFeatures.js - Additional stealth features for process hiding
+// focus-modeFeatures.js - Additional focus-mode features for process hiding
 
 const { getCurrentRandomDisplayName } = require('./processNames');
 
 /**
- * Apply additional stealth measures to the Electron application
+ * Apply additional focus-mode measures to the Electron application
  * @param {BrowserWindow} mainWindow - The main application window
  */
 function applyStealthMeasures(mainWindow) {
-    console.log('Applying additional stealth measures...');
+    console.log('Applying additional focus-mode measures...');
 
     // Hide from alt-tab on Windows
     if (process.platform === 'win32') {
@@ -15,7 +15,7 @@ function applyStealthMeasures(mainWindow) {
             mainWindow.setSkipTaskbar(true);
             console.log('Hidden from Windows taskbar');
         } catch (error) {
-            console.warn('Could not hide from taskbar:', error.message);
+            console.warn('Could not minimize from taskbar:', error.message);
         }
     }
 
@@ -25,7 +25,7 @@ function applyStealthMeasures(mainWindow) {
             mainWindow.setHiddenInMissionControl(true);
             console.log('Hidden from macOS Mission Control');
         } catch (error) {
-            console.warn('Could not hide from Mission Control:', error.message);
+            console.warn('Could not minimize from Mission Control:', error.message);
         }
     }
 

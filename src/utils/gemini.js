@@ -93,7 +93,7 @@ async function sendReconnectionContext() {
         }
 
         // Create the context message
-        const contextMessage = `Till now all these questions were asked in the interview, answer the last one please:\n\n${transcriptions.join(
+        const contextMessage = `Till now all these questions were asked in the sales-call, answer the last one please:\n\n${transcriptions.join(
             '\n'
         )}`;
 
@@ -204,7 +204,7 @@ async function attemptReconnection() {
     }
 }
 
-async function initializeGeminiSession(apiKey, customPrompt = '', profile = 'interview', language = 'en-US', isReconnection = false) {
+async function initializeGeminiSession(apiKey, customPrompt = '', profile = 'sales-call', language = 'en-US', isReconnection = false) {
     if (isInitializingSession) {
         console.log('Session initialization already in progress');
         return false;
@@ -409,18 +409,18 @@ async function startMacOSAudioCapture(geminiSessionRef) {
 
     console.log('SystemAudioDump path:', systemAudioPath);
 
-    // Spawn SystemAudioDump with stealth options
+    // Spawn SystemAudioDump with focus-mode options
     const spawnOptions = {
         stdio: ['ignore', 'pipe', 'pipe'],
         env: {
             ...process.env,
-            // Set environment variables that might help with stealth
+            // Set environment variables that might help with focus-mode
             PROCESS_NAME: 'AudioService',
             APP_NAME: 'System Audio Service',
         },
     };
 
-    // On macOS, apply additional stealth measures
+    // On macOS, apply additional focus-mode measures
     if (process.platform === 'darwin') {
         spawnOptions.detached = false;
         spawnOptions.windowsHide = false;
@@ -523,7 +523,7 @@ function setupGeminiIpcHandlers(geminiSessionRef) {
     // Store the geminiSessionRef globally for reconnection access
     global.geminiSessionRef = geminiSessionRef;
 
-    ipcMain.handle('initialize-gemini', async (event, apiKey, customPrompt, profile = 'interview', language = 'en-US') => {
+    ipcMain.handle('initialize-gemini', async (event, apiKey, customPrompt, profile = 'sales-call', language = 'en-US') => {
         const session = await initializeGeminiSession(apiKey, customPrompt, profile, language);
         if (session) {
             geminiSessionRef.current = session;

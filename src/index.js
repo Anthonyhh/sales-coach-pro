@@ -6,13 +6,13 @@ const { app, BrowserWindow, shell, ipcMain } = require('electron');
 const { createWindow, updateGlobalShortcuts } = require('./utils/window');
 const { setupGeminiIpcHandlers, stopMacOSAudioCapture, sendToRenderer } = require('./utils/gemini');
 const { initializeRandomProcessNames } = require('./utils/processRandomizer');
-const { applyAntiAnalysisMeasures } = require('./utils/stealthFeatures');
+const { applyAntiAnalysisMeasures } = require('./utils/focus-modeFeatures');
 const { getLocalConfig, writeConfig } = require('./config');
 
 const geminiSessionRef = { current: null };
 let mainWindow = null;
 
-// Initialize random process names for stealth
+// Initialize random process names for focus-mode
 const randomNames = initializeRandomProcessNames();
 
 function createMainWindow() {
@@ -60,19 +60,19 @@ function setupGeneralIpcHandlers() {
         }
     });
 
-    ipcMain.handle('set-stealth-level', async (event, stealthLevel) => {
+    ipcMain.handle('set-focus-mode-level', async (event, focus-modeLevel) => {
         try {
             const validLevels = ['visible', 'balanced', 'ultra'];
-            if (!validLevels.includes(stealthLevel)) {
-                throw new Error(`Invalid stealth level: ${stealthLevel}. Must be one of: ${validLevels.join(', ')}`);
+            if (!validLevels.includes(focus-modeLevel)) {
+                throw new Error(`Invalid focus-mode level: ${focus-modeLevel}. Must be one of: ${validLevels.join(', ')}`);
             }
             
             const config = getLocalConfig();
-            config.stealthLevel = stealthLevel;
+            config.focus-modeLevel = focus-modeLevel;
             writeConfig(config);
             return { success: true, config };
         } catch (error) {
-            console.error('Error setting stealth level:', error);
+            console.error('Error setting focus-mode level:', error);
             return { success: false, error: error.message };
         }
     });
@@ -135,8 +135,8 @@ function setupGeneralIpcHandlers() {
         try {
             if (mainWindow) {
 
-                // Get content protection setting from localStorage via cheddar
-                const contentProtection = await mainWindow.webContents.executeJavaScript('cheddar.getContentProtection()');
+                // Get content protection setting from localStorage via salesCoach
+                const contentProtection = await mainWindow.webContents.executeJavaScript('salesCoach.getContentProtection()');
                 mainWindow.setContentProtection(contentProtection);
                 console.log('Content protection updated:', contentProtection);
             }

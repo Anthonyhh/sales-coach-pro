@@ -149,14 +149,14 @@ function arrayBufferToBase64(buffer) {
     return btoa(binary);
 }
 
-async function initializeGemini(profile = 'interview', language = 'en-US') {
+async function initializeGemini(profile = 'sales-call', language = 'en-US') {
     const apiKey = localStorage.getItem('apiKey')?.trim();
     if (apiKey) {
         const success = await ipcRenderer.invoke('initialize-gemini', apiKey, localStorage.getItem('customPrompt') || '', profile, language);
         if (success) {
-            cheddar.setStatus('Live');
+            salesCoach.setStatus('Live');
         } else {
-            cheddar.setStatus('error');
+            salesCoach.setStatus('error');
         }
     }
 }
@@ -164,13 +164,13 @@ async function initializeGemini(profile = 'interview', language = 'en-US') {
 // Listen for status updates
 ipcRenderer.on('update-status', (event, status) => {
     console.log('Status update:', status);
-    cheddar.setStatus(status);
+    salesCoach.setStatus(status);
 });
 
-// Listen for responses - REMOVED: This is handled in CheatingDaddyApp.js to avoid duplicates
+// Listen for responses - REMOVED: This is handled in CoachingDaddyApp.js to avoid duplicates
 // ipcRenderer.on('update-response', (event, response) => {
 //     console.log('Gemini response:', response);
-//     cheddar.e().setResponse(response);
+//     salesCoach.e().setResponse(response);
 //     // You can add UI elements to display the response if needed
 // });
 
@@ -351,7 +351,7 @@ async function startCapture(screenshotIntervalSeconds = 5, imageQuality = 'mediu
         }
     } catch (err) {
         console.error('Error starting capture:', err);
-        cheddar.setStatus('error');
+        salesCoach.setStatus('error');
     }
 }
 
@@ -734,11 +734,11 @@ ipcRenderer.on('clear-sensitive-data', () => {
 
 // Handle shortcuts based on current view
 function handleShortcut(shortcutKey) {
-    const currentView = cheddar.getCurrentView();
+    const currentView = salesCoach.getCurrentView();
 
     if (shortcutKey === 'ctrl+enter' || shortcutKey === 'cmd+enter') {
         if (currentView === 'main') {
-            cheddar.element().handleStart();
+            salesCoach.element().handleStart();
         } else {
             captureManualScreenshot();
         }
@@ -746,21 +746,21 @@ function handleShortcut(shortcutKey) {
 }
 
 // Create reference to the main app element
-const cheatingDaddyApp = document.querySelector('cheating-daddy-app');
+const coachingDaddyApp = document.querySelector('coaching-daddy-app');
 
-// Consolidated cheddar object - all functions in one place
-const cheddar = {
+// Consolidated salesCoach object - all functions in one place
+const salesCoach = {
     // Element access
-    element: () => cheatingDaddyApp,
-    e: () => cheatingDaddyApp,
+    element: () => coachingDaddyApp,
+    e: () => coachingDaddyApp,
 
     // App state functions - access properties directly from the app element
-    getCurrentView: () => cheatingDaddyApp.currentView,
-    getLayoutMode: () => cheatingDaddyApp.layoutMode,
+    getCurrentView: () => coachingDaddyApp.currentView,
+    getLayoutMode: () => coachingDaddyApp.layoutMode,
 
     // Status and response functions
-    setStatus: text => cheatingDaddyApp.setStatus(text),
-    setResponse: response => cheatingDaddyApp.setResponse(response),
+    setStatus: text => coachingDaddyApp.setStatus(text),
+    setResponse: response => coachingDaddyApp.setResponse(response),
 
     // Core functionality
     initializeGemini,
@@ -786,4 +786,4 @@ const cheddar = {
 };
 
 // Make it globally available
-window.cheddar = cheddar;
+window.salesCoach = salesCoach;

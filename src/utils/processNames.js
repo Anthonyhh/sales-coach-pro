@@ -1,4 +1,4 @@
-// processNames.js - Random process name generation for better stealth
+// processNames.js - Random process name generation for better focus-mode
 
 // Pool of legitimate-sounding application name components
 const prefixes = [

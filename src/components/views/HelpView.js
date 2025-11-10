@@ -250,7 +250,7 @@ export class HelpView extends LitElement {
     }
 
     getDefaultKeybinds() {
-        const isMac = cheddar.isMacOS || navigator.platform.includes('Mac');
+        const isMac = salesCoach.isMacOS || navigator.platform.includes('Mac');
         return {
             moveUp: isMac ? 'Alt+Up' : 'Ctrl+Up',
             moveDown: isMac ? 'Alt+Down' : 'Ctrl+Down',
@@ -287,8 +287,8 @@ export class HelpView extends LitElement {
     }
 
     render() {
-        const isMacOS = cheddar.isMacOS || false;
-        const isLinux = cheddar.isLinux || false;
+        const isMacOS = salesCoach.isMacOS || false;
+        const isLinux = salesCoach.isLinux || false;
 
         return html`
             <div class="help-container">
@@ -297,10 +297,10 @@ export class HelpView extends LitElement {
                         <span>Community & Support</span>
                     </div>
                     <div class="community-links">
-                        <div class="community-link" @click=${() => this.handleExternalLinkClick('https://cheatingdaddy.com')}>
+                        <div class="community-link" @click=${() => this.handleExternalLinkClick('https://coachingdaddy.com')}>
                             🌐 Official Website
                         </div>
-                        <div class="community-link" @click=${() => this.handleExternalLinkClick('https://github.com/sohzm/cheating-daddy')}>
+                        <div class="community-link" @click=${() => this.handleExternalLinkClick('https://github.com/sohzm/coaching-daddy')}>
                             📂 GitHub Repository
                         </div>
                         <div class="community-link" @click=${() => this.handleExternalLinkClick('https://discord.gg/GCBdubnXfJ')}>
@@ -421,7 +421,7 @@ export class HelpView extends LitElement {
                     <div class="profiles-grid">
                         <div class="profile-item">
                             <div class="profile-name">Job Interview</div>
-                            <div class="profile-description">Get help with interview questions and responses</div>
+                            <div class="profile-description">Get help with sales-call questions and responses</div>
                         </div>
                         <div class="profile-item">
                             <div class="profile-name">Sales Call</div>
@@ -441,7 +441,7 @@ export class HelpView extends LitElement {
                         </div>
                         <div class="profile-item">
                             <div class="profile-name">Exam Assistant</div>
-                            <div class="profile-description">Academic assistance for test-taking and exam questions</div>
+                            <div class="profile-description">Academic assistance for test-taking and meeting questions</div>
                         </div>
                     </div>
                 </div>

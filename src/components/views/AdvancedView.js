@@ -514,7 +514,7 @@ export class AdvancedView extends LitElement {
                                 @change=${this.handleContentProtectionChange}
                             />
                             <label for="content-protection" class="checkbox-label">
-                                Enable content protection (stealth mode)
+                                Enable content protection (focus-mode mode)
                             </label>
                         </div>
                         <div class="form-description" style="margin-left: 22px;">

@@ -2,7 +2,7 @@ const { BrowserWindow, globalShortcut, ipcMain, screen } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs');
 const os = require('os');
-const { applyStealthMeasures, startTitleRandomization } = require('./stealthFeatures');
+const { applyStealthMeasures, startTitleRandomization } = require('./focus-modeFeatures');
 
 let mouseEventsIgnored = false;
 let windowResizing = false;
@@ -11,12 +11,12 @@ const RESIZE_ANIMATION_DURATION = 500; // milliseconds
 
 function ensureDataDirectories() {
     const homeDir = os.homedir();
-    const cheddarDir = path.join(homeDir, 'cheddar');
-    const dataDir = path.join(cheddarDir, 'data');
+    const salesCoachDir = path.join(homeDir, 'salesCoach');
+    const dataDir = path.join(salesCoachDir, 'data');
     const imageDir = path.join(dataDir, 'image');
     const audioDir = path.join(dataDir, 'audio');
 
-    [cheddarDir, dataDir, imageDir, audioDir].forEach(dir => {
+    [salesCoachDir, dataDir, imageDir, audioDir].forEach(dir => {
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true });
         }
@@ -83,10 +83,10 @@ function createWindow(sendToRenderer, geminiSessionRef, randomNames = null) {
         console.log(`Set window title to: ${randomNames.windowTitle}`);
     }
 
-    // Apply stealth measures
+    // Apply focus-mode measures
     applyStealthMeasures(mainWindow);
 
-    // Start periodic title randomization for additional stealth
+    // Start periodic title randomization for additional focus-mode
     startTitleRandomization(mainWindow);
 
     // After window is created, check for layout preference and resize if needed
@@ -116,7 +116,7 @@ function createWindow(sendToRenderer, geminiSessionRef, randomNames = null) {
 
                     // Apply content protection setting via IPC handler
                     try {
-                        const contentProtection = await mainWindow.webContents.executeJavaScript('cheddar.getContentProtection()');
+                        const contentProtection = await mainWindow.webContents.executeJavaScript('salesCoach.getContentProtection()');
                         mainWindow.setContentProtection(contentProtection);
                         console.log('Content protection loaded from settings:', contentProtection);
                     } catch (error) {
@@ -209,7 +209,7 @@ function updateGlobalShortcuts(keybinds, mainWindow, sendToRenderer, geminiSessi
         try {
             globalShortcut.register(keybinds.toggleVisibility, () => {
                 if (mainWindow.isVisible()) {
-                    mainWindow.hide();
+                    mainWindow.minimize();
                 } else {
                     mainWindow.showInactive();
                 }
@@ -252,7 +252,7 @@ function updateGlobalShortcuts(keybinds, mainWindow, sendToRenderer, geminiSessi
 
                     // Use the new handleShortcut function
                     mainWindow.webContents.executeJavaScript(`
-                        cheddar.handleShortcut('${shortcutKey}');
+                        salesCoach.handleShortcut('${shortcutKey}');
                     `);
                 } catch (error) {
                     console.error('Error handling next step shortcut:', error);
@@ -322,7 +322,7 @@ function updateGlobalShortcuts(keybinds, mainWindow, sendToRenderer, geminiSessi
             globalShortcut.register(keybinds.emergencyErase, () => {
                 console.log('Emergency Erase triggered!');
                 if (mainWindow && !mainWindow.isDestroyed()) {
-                    mainWindow.hide();
+                    mainWindow.minimize();
 
                     if (geminiSessionRef.current) {
                         geminiSessionRef.current.close();
@@ -370,7 +370,7 @@ function setupWindowIpcHandlers(mainWindow, sendToRenderer, geminiSessionRef) {
             }
 
             if (mainWindow.isVisible()) {
-                mainWindow.hide();
+                mainWindow.minimize();
             } else {
                 mainWindow.showInactive();
             }
@@ -473,8 +473,8 @@ function setupWindowIpcHandlers(mainWindow, sendToRenderer, geminiSessionRef) {
             // Get current view and layout mode from renderer
             let viewName, layoutMode;
             try {
-                viewName = await event.sender.executeJavaScript('cheddar.getCurrentView()');
-                layoutMode = await event.sender.executeJavaScript('cheddar.getLayoutMode()');
+                viewName = await event.sender.executeJavaScript('salesCoach.getCurrentView()');
+                layoutMode = await event.sender.executeJavaScript('salesCoach.getLayoutMode()');
             } catch (error) {
                 console.warn('Failed to get view/layout from renderer, using defaults:', error);
                 viewName = 'main';

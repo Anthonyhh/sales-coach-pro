@@ -336,7 +336,7 @@ export class HistoryView extends LitElement {
     async loadSessions() {
         try {
             this.loading = true;
-            this.sessions = await cheddar.getAllConversationSessions();
+            this.sessions = await salesCoach.getAllConversationSessions();
         } catch (error) {
             console.error('Error loading conversation sessions:', error);
             this.sessions = [];
@@ -402,12 +402,12 @@ export class HistoryView extends LitElement {
 
     getProfileNames() {
         return {
-            interview: 'Job Interview',
+            sales-call: 'Job Interview',
             sales: 'Sales Call',
             meeting: 'Business Meeting',
             presentation: 'Presentation',
             negotiation: 'Negotiation',
-            exam: 'Exam Assistant',
+            meeting: 'Exam Assistant',
         };
     }
 
