@@ -438,9 +438,9 @@ export class OnboardingView extends LitElement {
         const slides = [
             {
                 icon: 'assets/onboarding/welcome.svg',
-                title: 'Welcome to Coaching Daddy',
+                title: 'Welcome to Sales Coach Pro',
                 content:
-                    'Your AI assistant that listens and watches, then provides intelligent suggestions automatically during sales-calls and meetings.',
+                    'Your AI-powered sales coach that provides real-time guidance during live sales calls, helping you qualify prospects, handle objections, and close deals.',
             },
             {
                 icon: 'assets/onboarding/security.svg',
@@ -450,7 +450,7 @@ export class OnboardingView extends LitElement {
             {
                 icon: 'assets/onboarding/context.svg',
                 title: 'Add Your Context',
-                content: 'Share relevant information to help the AI provide better, more personalized assistance.',
+                content: 'Share information about your product, company, or sales approach to help the AI provide better, more personalized coaching.',
                 showTextarea: true,
             },
             {
@@ -485,7 +485,7 @@ export class OnboardingView extends LitElement {
                         ? html`
                               <textarea
                                   class="context-textarea"
-                                  placeholder="Paste your resume, job description, or any relevant context here..."
+                                  placeholder="Paste your product description, pricing, key differentiators, or any context to help coach you during sales calls..."
                                   .value=${this.contextText}
                                   @input=${this.handleContextInput}
                               ></textarea>

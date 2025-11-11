@@ -463,33 +463,33 @@ export class CustomizeView extends LitElement {
         return [
             {
                 value: 'sales-call',
-                name: 'Job Interview',
-                description: 'Get help with answering sales-call questions',
+                name: 'Sales Call Coach',
+                description: 'Real-time coaching for live sales calls with BANT/MEDDIC qualification',
             },
             {
-                value: 'sales',
-                name: 'Sales Call',
-                description: 'Assist with sales conversations and objection handling',
+                value: 'discovery',
+                name: 'Discovery Call',
+                description: 'Specialized coaching for discovery conversations and needs analysis',
             },
             {
-                value: 'meeting',
-                name: 'Business Meeting',
-                description: 'Support for professional meetings and discussions',
+                value: 'demo',
+                name: 'Product Demo',
+                description: 'Guidance for delivering value-focused product demonstrations',
             },
             {
-                value: 'presentation',
-                name: 'Presentation',
-                description: 'Help with presentations and public speaking',
+                value: 'objection-handling',
+                name: 'Objection Handling',
+                description: 'Expert coaching for handling common sales objections confidently',
+            },
+            {
+                value: 'closing',
+                name: 'Deal Closing',
+                description: 'Techniques and tactics for closing deals and securing commitments',
             },
             {
                 value: 'negotiation',
-                name: 'Negotiation',
-                description: 'Guidance for business negotiations and deals',
-            },
-            {
-                value: 'meeting',
-                name: 'Exam Assistant',
-                description: 'Academic assistance for test-taking and meeting questions',
+                name: 'Pricing Negotiation',
+                description: 'Strategic coaching for pricing discussions and contract negotiations',
             },
         ];
     }
@@ -531,12 +531,12 @@ export class CustomizeView extends LitElement {
 
     getProfileNames() {
         return {
-            sales-call: 'Job Interview',
-            sales: 'Sales Call',
-            meeting: 'Business Meeting',
-            presentation: 'Presentation',
-            negotiation: 'Negotiation',
-            meeting: 'Exam Assistant',
+            'sales-call': 'Sales Call Coach',
+            'discovery': 'Discovery Call',
+            'demo': 'Product Demo',
+            'objection-handling': 'Objection Handling',
+            'closing': 'Deal Closing',
+            'negotiation': 'Pricing Negotiation',
         };
     }
 
@@ -894,16 +894,15 @@ export class CustomizeView extends LitElement {
                             <label class="form-label">Custom AI Instructions</label>
                             <textarea
                                 class="form-control"
-                                placeholder="Add specific instructions for how you want the AI to behave during ${
-                                    profileNames[this.selectedProfile] || 'this interaction'
-                                }..."
+                                placeholder="e.g., Focus on enterprise sales, emphasize ROI over features, use consultative approach..."
                                 .value=${localStorage.getItem('customPrompt') || ''}
                                 rows="4"
                                 @input=${this.handleCustomPromptInput}
                             ></textarea>
                             <div class="form-description">
-                                Personalize the AI's behavior with specific instructions that will be added to the
-                                ${profileNames[this.selectedProfile] || 'selected profile'} base prompts
+                                Add custom instructions to personalize how the AI coaches you during ${
+                                    profileNames[this.selectedProfile] || 'sales calls'
+                                }
                 </div>
                 </div>
             </div>
@@ -918,36 +917,36 @@ export class CustomizeView extends LitElement {
                         <div class="form-group">
                             <label class="form-label">Audio Mode</label>
                             <select class="form-control" .value=${localStorage.getItem('audioMode') || 'speaker_only'} @change=${e => localStorage.setItem('audioMode', e.target.value)}>
-                                <option value="speaker_only">Speaker Only (Interviewer)</option>
-                                <option value="mic_only">Microphone Only (Me)</option>
-                                <option value="both">Both Speaker & Microphone</option>
+                                <option value="speaker_only">Speaker Only (Prospect Audio)</option>
+                                <option value="mic_only">Microphone Only (My Voice)</option>
+                                <option value="both">Both Speaker & Microphone (Full Call)</option>
                             </select>
                             <div class="form-description">
-                                Choose which audio sources to capture for the AI.
+                                Choose which audio sources to capture for AI coaching analysis.
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Stealth Profile Section -->
+                <!-- Focus Mode Section -->
                 <div class="settings-section">
                     <div class="section-title">
-                        <span>Stealth Profile</span>
+                        <span>Focus Mode</span>
                     </div>
                     <div class="form-grid">
                         <div class="form-group">
-                            <label class="form-label">Profile</label>
+                            <label class="form-label">Window Mode</label>
                             <select class="form-control" .value=${localStorage.getItem('focus-modeProfile') || 'balanced'} @change=${e => {
                                 localStorage.setItem('focus-modeProfile', e.target.value);
                                 // We need to notify the main process to restart for some settings to apply
-                                alert('Restart the application for focus-mode changes to take full effect.');
+                                alert('Restart the application for window mode changes to take full effect.');
                             }}>
-                                <option value="visible">Visible</option>
-                                <option value="balanced">Balanced</option>
-                                <option value="ultra">Ultra-Stealth</option>
+                                <option value="visible">Standard Window</option>
+                                <option value="balanced">Overlay Mode (Recommended)</option>
+                                <option value="ultra">Minimal Overlay</option>
                             </select>
                             <div class="form-description">
-                                Adjusts visibility and detection resistance. A restart is required for changes to apply.
+                                Controls how the coaching window appears during calls. Overlay modes keep the coach visible over your video conferencing software. A restart is required for changes to apply.
                             </div>
                         </div>
                     </div>

@@ -297,14 +297,14 @@ export class HelpView extends LitElement {
                         <span>Community & Support</span>
                     </div>
                     <div class="community-links">
-                        <div class="community-link" @click=${() => this.handleExternalLinkClick('https://coachingdaddy.com')}>
+                        <div class="community-link" @click=${() => this.handleExternalLinkClick('https://salescoachpro.com')}>
                             🌐 Official Website
                         </div>
-                        <div class="community-link" @click=${() => this.handleExternalLinkClick('https://github.com/sohzm/coaching-daddy')}>
+                        <div class="community-link" @click=${() => this.handleExternalLinkClick('https://github.com/salescoachpro/sales-coach-pro')}>
                             📂 GitHub Repository
                         </div>
-                        <div class="community-link" @click=${() => this.handleExternalLinkClick('https://discord.gg/GCBdubnXfJ')}>
-                            💬 Discord Community
+                        <div class="community-link" @click=${() => this.handleExternalLinkClick('https://salescoachpro.com/support')}>
+                            💬 Support Center
                         </div>
                     </div>
                 </div>
@@ -405,8 +405,8 @@ export class HelpView extends LitElement {
                             <strong>Click-through Mode:</strong> Use ${this.formatKeybind(this.keybinds.toggleClickThrough)} to make the window
                             click-through
                         </div>
-                        <div class="usage-step"><strong>Get AI Help:</strong> The AI will analyze your screen and audio to provide assistance</div>
-                        <div class="usage-step"><strong>Text Messages:</strong> Type questions or requests to the AI using the text input</div>
+                        <div class="usage-step"><strong>Get AI Coaching:</strong> The AI analyzes your call in real-time and provides sales coaching suggestions</div>
+                        <div class="usage-step"><strong>Ask Questions:</strong> Type specific questions to get targeted coaching during your sales calls</div>
                         <div class="usage-step">
                             <strong>Navigate Responses:</strong> Use ${this.formatKeybind(this.keybinds.previousResponse)} and
                             ${this.formatKeybind(this.keybinds.nextResponse)} to browse through AI responses
@@ -420,37 +420,37 @@ export class HelpView extends LitElement {
                     </div>
                     <div class="profiles-grid">
                         <div class="profile-item">
-                            <div class="profile-name">Job Interview</div>
-                            <div class="profile-description">Get help with sales-call questions and responses</div>
+                            <div class="profile-name">Sales Call Coach</div>
+                            <div class="profile-description">Real-time coaching for live sales calls with BANT/MEDDIC qualification</div>
                         </div>
                         <div class="profile-item">
-                            <div class="profile-name">Sales Call</div>
-                            <div class="profile-description">Assistance with sales conversations and objection handling</div>
+                            <div class="profile-name">Discovery Call</div>
+                            <div class="profile-description">Specialized coaching for discovery conversations and needs analysis</div>
                         </div>
                         <div class="profile-item">
-                            <div class="profile-name">Business Meeting</div>
-                            <div class="profile-description">Support for professional meetings and discussions</div>
+                            <div class="profile-name">Product Demo</div>
+                            <div class="profile-description">Guidance for delivering value-focused product demonstrations</div>
                         </div>
                         <div class="profile-item">
-                            <div class="profile-name">Presentation</div>
-                            <div class="profile-description">Help with presentations and public speaking</div>
+                            <div class="profile-name">Objection Handling</div>
+                            <div class="profile-description">Expert coaching for handling common sales objections confidently</div>
                         </div>
                         <div class="profile-item">
-                            <div class="profile-name">Negotiation</div>
-                            <div class="profile-description">Guidance for business negotiations and deals</div>
+                            <div class="profile-name">Deal Closing</div>
+                            <div class="profile-description">Techniques and tactics for closing deals and securing commitments</div>
                         </div>
                         <div class="profile-item">
-                            <div class="profile-name">Exam Assistant</div>
-                            <div class="profile-description">Academic assistance for test-taking and meeting questions</div>
+                            <div class="profile-name">Pricing Negotiation</div>
+                            <div class="profile-description">Strategic coaching for pricing discussions and contract negotiations</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="option-group">
                     <div class="option-label">
-                        <span>Audio Input</span>
+                        <span>Audio Coaching</span>
                     </div>
-                    <div class="description">The AI listens to conversations and provides contextual assistance based on what it hears.</div>
+                    <div class="description">The AI listens to your sales calls in real-time and provides contextual coaching based on conversation flow, prospect responses, and sales methodologies.</div>
                 </div>
             </div>
         `;
