@@ -5,11 +5,10 @@ module.exports = {
     packagerConfig: {
         asar: true,
         extraResource: ['./src/assets/SystemAudioDump'],
-        name: 'Cheating Daddy',
+        name: 'Sales Coach Pro',
         icon: 'src/assets/logo',
         // use `security find-identity -v -p codesigning` to find your identity
         // for macos signing
-        // also fuck apple
         // osxSign: {
         //    identity: '<paste your identity here>',
         //   optionsForFile: (filePath) => {
@@ -18,7 +17,6 @@ module.exports = {
         //       };
         //   },
         // },
-        // notarize if off cuz i ran this for 6 hours and it still didnt finish
         // osxNotarize: {
         //    appleId: 'your apple id',
         //    appleIdPassword: 'app specific password',
@@ -30,9 +28,9 @@ module.exports = {
         {
             name: '@electron-forge/maker-squirrel',
             config: {
-                name: 'cheating-daddy',
-                productName: 'Cheating Daddy',
-                shortcutName: 'Cheating Daddy',
+                name: 'sales-coach-pro',
+                productName: 'Sales Coach Pro',
+                shortcutName: 'Sales Coach Pro',
                 createDesktopShortcut: true,
                 createStartMenuShortcut: true,
             },
@@ -46,11 +44,11 @@ module.exports = {
             platforms: ['linux'],
             config: {
                 options: {
-                    name: 'Cheating Daddy',
-                    productName: 'Cheating Daddy',
-                    genericName: 'AI Assistant',
-                    description: 'AI assistant for interviews and learning',
-                    categories: ['Development', 'Education'],
+                    name: 'Sales Coach Pro',
+                    productName: 'Sales Coach Pro',
+                    genericName: 'Sales Coaching AI',
+                    description: 'AI-powered sales coaching platform for real-time call guidance',
+                    categories: ['Office', 'Business'],
                     icon: 'src/assets/logo.png'
                 }
             },
