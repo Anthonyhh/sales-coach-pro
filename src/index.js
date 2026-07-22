@@ -4,9 +4,9 @@ if (require('electron-squirrel-startup')) {
 
 const { app, BrowserWindow, shell, ipcMain } = require('electron');
 const { createWindow, updateGlobalShortcuts } = require('./utils/window');
-const { setupGeminiIpcHandlers, stopMacOSAudioCapture, sendToRenderer } = require('./utils/gemini');
+const { setupGeminiIpcHandlers, stopMacOSAudioCapture, sendToRenderer } = require('./utils/localBrain');
 const { initializeRandomProcessNames } = require('./utils/processRandomizer');
-const { applyAntiAnalysisMeasures } = require('./utils/focus-modeFeatures');
+const { applyAntiAnalysisMeasures } = require('./utils/stealthFeatures');
 const { getLocalConfig, writeConfig } = require('./config');
 
 const geminiSessionRef = { current: null };
@@ -60,15 +60,15 @@ function setupGeneralIpcHandlers() {
         }
     });
 
-    ipcMain.handle('set-focus-mode-level', async (event, focus-modeLevel) => {
+    ipcMain.handle('set-focus-mode-level', async (event, stealthLevel) => {
         try {
             const validLevels = ['visible', 'balanced', 'ultra'];
-            if (!validLevels.includes(focus-modeLevel)) {
-                throw new Error(`Invalid focus-mode level: ${focus-modeLevel}. Must be one of: ${validLevels.join(', ')}`);
+            if (!validLevels.includes(stealthLevel)) {
+                throw new Error(`Invalid focus-mode level: ${stealthLevel}. Must be one of: ${validLevels.join(', ')}`);
             }
             
             const config = getLocalConfig();
-            config.focus-modeLevel = focus-modeLevel;
+            config.stealthLevel = stealthLevel;
             writeConfig(config);
             return { success: true, config };
         } catch (error) {

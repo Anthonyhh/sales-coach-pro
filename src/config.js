@@ -5,7 +5,7 @@ const os = require('os');
 // Default configuration
 const DEFAULT_CONFIG = {
     onboarded: false,
-    focus-modeLevel: "balanced",
+    stealthLevel: "balanced",
     layout: "normal"
 };
 

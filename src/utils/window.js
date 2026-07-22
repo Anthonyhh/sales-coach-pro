@@ -2,7 +2,7 @@ const { BrowserWindow, globalShortcut, ipcMain, screen } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs');
 const os = require('os');
-const { applyStealthMeasures, startTitleRandomization } = require('./focus-modeFeatures');
+const { applyStealthMeasures, startTitleRandomization } = require('./stealthFeatures');
 
 let mouseEventsIgnored = false;
 let windowResizing = false;

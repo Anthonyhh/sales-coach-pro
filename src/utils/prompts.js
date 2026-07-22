@@ -156,7 +156,7 @@ Suggest the **next best discovery question** to ask. Frame it as: "Ask: [questio
 Provide **demo coaching** focused on value, not features. Suggest what to say to tie product to their pain points.`,
     },
 
-    objection-handling: {
+    'objection-handling': {
         intro: `You are an objection handling specialist. Your job is to help sales reps confidently handle and overcome common sales objections.`,
 
         formatRequirements: `**RESPONSE FORMAT REQUIREMENTS:**
